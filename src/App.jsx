@@ -6,14 +6,20 @@ import CV from './components/CV'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [name, setName] = useState('First Last');
+
+  let getFormData = (formName) => {
+    setName(formName);
+  };
 
   return (
     <>
-      <Form />
-      <CV />
+      <Form parentCallback={getFormData} />
+      <CV cvName={name}/>
     </>
-  )
+  );
+
+  
 }
 
 export default App

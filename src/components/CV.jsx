@@ -1,7 +1,7 @@
-function CV() {
+function CV({ cvName }) {
     return (
         <div>
-            <h1>CV info here</h1>
+            <h1>{ cvName }</h1>
         </div>
     );
 }

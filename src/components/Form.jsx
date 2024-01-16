@@ -1,6 +1,12 @@
-function Form() {
+function Form({ parentCallback }) {
+
+    let returnData = (event) => {
+        parentCallback(event.target.name.value);
+        event.preventDefault();
+    }
+
     return (
-        <form>
+        <form onSubmit={returnData}>            
             <div className="section">
                 <div>
                     <label htmlFor="name">Name:</label>
@@ -82,6 +88,8 @@ function Form() {
                 </div>
             </div>
             
+            <input type="submit"/>
+
         </form>
     )
 }
