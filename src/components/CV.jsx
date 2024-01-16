@@ -1,7 +1,11 @@
-function CV({ cvName }) {
+function CV({ cvName, cvEmail, cvPhone, cvAddress,
+            cvEducation, cvExperience}) {
     return (
         <div>
-            <h1>{ cvName }</h1>
+            <p>{cvName}</p>
+            <p>{cvEmail}</p>
+            <p>{cvPhone}</p>
+            <p>{cvAddress}</p>    
         </div>
     );
 }

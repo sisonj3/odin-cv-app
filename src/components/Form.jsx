@@ -1,7 +1,10 @@
 function Form({ parentCallback }) {
 
     let returnData = (event) => {
-        parentCallback(event.target.name.value);
+        parentCallback(event.target.name.value,
+            event.target.email.value,
+            event.target.phone.value,
+            event.target.address.value);
         event.preventDefault();
     }
 
