@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import {v4 as uuidv4} from 'uuid'
 import Form from './components/Form'
 import CV from './components/CV'
 import './App.css'
@@ -20,7 +19,8 @@ function App() {
       city: 'Las Vegas',
       country: 'USA',
       startDate: new Date(2017, 8, 28),
-      endDate: new Date(2019, 12, 16)
+      endDate: new Date(2019, 12, 16),
+      id: uuidv4()
     },
     {
       school: 'CSN',
@@ -28,7 +28,8 @@ function App() {
       city: 'Las Vegas',
       country: 'USA',
       startDate: new Date(2019, 8, 28),
-      endDate: new Date(2022, 12, 16)
+      endDate: new Date(2022, 12, 16),
+      id: uuidv4()
     }]);
 
   let getFormData = (formName, formEmail, formPhone, formAddress) => {
@@ -41,10 +42,13 @@ function App() {
   return (
     <>
       <Form parentCallback={getFormData} />
-      <CV cvName={name}
+      <CV
+        key={1}
+        cvName={name}
         cvEmail={email}
         cvPhone={phone}
-        cvAddress={address}/>
+        cvAddress={address}
+        cvEducation={education}/>
     </>
   );
 

@@ -1,3 +1,5 @@
+import { ReactDOM } from "react";
+
 function CV({ cvName, cvEmail, cvPhone, cvAddress,
     cvEducation, cvExperience }) {
     
@@ -21,8 +23,22 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
     cvDiv.appendChild(phoneP);
     cvDiv.appendChild(addressP);
 
+    console.log(cvEducation);
+
     return (
-        <div ref={(nodeElement) => {nodeElement && nodeElement.appendChild(cvDiv)}}/>
+        <div>
+            <div>
+                <p>{cvName}</p>
+                <p>{cvEmail}</p>
+                <p>{cvPhone}</p>
+                <p>{cvAddress}</p>
+            </div>
+            <div>
+                {cvEducation.map((edu) => (
+                    <h1 key={edu.id}>{ edu.school }</h1>
+                ))}
+            </div>
+        </div>
     );
 }
 
