@@ -23,8 +23,6 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
     cvDiv.appendChild(phoneP);
     cvDiv.appendChild(addressP);
 
-    console.log(cvEducation);
-
     return (
         <div>
             <div>
@@ -35,7 +33,12 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
             </div>
             <div>
                 {cvEducation.map((edu) => (
-                    <h1 key={edu.id}>{ edu.school }</h1>
+                    <div key={edu.id}>
+                        <h1>{edu.school}</h1>
+                        <p>{edu.degree}</p>
+                        <p>{edu.city}, {edu.country}</p>
+                        <p>{edu.startDate.getMonth()}/{edu.startDate.getDate()}/{edu.startDate.getFullYear()} - {edu.endDate.getMonth()}/{edu.endDate.getDate()}/{edu.endDate.getFullYear()}</p>
+                    </div>
                 ))}
             </div>
         </div>

@@ -21,22 +21,14 @@ function App() {
       startDate: new Date(2017, 8, 28),
       endDate: new Date(2019, 12, 16),
       id: uuidv4()
-    },
-    {
-      school: 'CSN',
-      degree: 'Bachelors',
-      city: 'Las Vegas',
-      country: 'USA',
-      startDate: new Date(2019, 8, 28),
-      endDate: new Date(2022, 12, 16),
-      id: uuidv4()
     }]);
 
-  let getFormData = (formName, formEmail, formPhone, formAddress) => {
+  let getFormData = (formName, formEmail, formPhone, formAddress, formEducation) => {
     setName(formName);
     setEmail(formEmail);
     setPhone(formPhone);
     setAddress(formAddress);
+    setEducation(formEducation);
   };
 
   return (

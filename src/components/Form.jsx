@@ -1,10 +1,30 @@
+import {v4 as uuidv4} from 'uuid'
+
 function Form({ parentCallback }) {
 
+    let education = [];
+
     let returnData = (event) => {
+        let formEdu = {
+            school: event.target.school.value,
+            degree: event.target.degree.value,
+            city: event.target.city.value,
+            country: event.target.country.value,
+            startDate: new Date(event.target.startDateEdu.value),
+            endDate: new Date(event.target.endDateEdu.value),
+            id: uuidv4()
+        };
+
+        education.push(formEdu);
+
+        // console.log(event.target.startDateEdu.value);
+        // console.log(event.target.endDateEdu.value);
+
         parentCallback(event.target.name.value,
             event.target.email.value,
             event.target.phone.value,
-            event.target.address.value);
+            event.target.address.value,
+            education);
         event.preventDefault();
     }
 
