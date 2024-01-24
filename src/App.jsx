@@ -22,6 +22,8 @@ function App() {
       endDate: new Date(2019, 12, 16),
       id: uuidv4()
     }]);
+  
+  // Job state
 
   let getFormData = (formName, formEmail, formPhone, formAddress, formEducation) => {
     setName(formName);
@@ -33,9 +35,10 @@ function App() {
 
   return (
     <>
-      <Form parentCallback={getFormData} />
+      <Form
+        parentCallback={getFormData}
+        parentEducation={education}/>
       <CV
-        key={1}
         cvName={name}
         cvEmail={email}
         cvPhone={phone}

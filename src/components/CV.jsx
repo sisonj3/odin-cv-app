@@ -23,6 +23,8 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
     cvDiv.appendChild(phoneP);
     cvDiv.appendChild(addressP);
 
+    console.log(cvEducation);
+
     return (
         <div>
             <div>

@@ -1,8 +1,8 @@
 import {v4 as uuidv4} from 'uuid'
 
-function Form({ parentCallback }) {
+function Form({ parentCallback, parentEducation }) {
 
-    let education = [];
+    let formEducation = parentEducation.map((x) => x);
 
     let returnData = (event) => {
         let formEdu = {
@@ -15,16 +15,17 @@ function Form({ parentCallback }) {
             id: uuidv4()
         };
 
-        education.push(formEdu);
-
         // console.log(event.target.startDateEdu.value);
         // console.log(event.target.endDateEdu.value);
+
+        formEducation.push(formEdu);
+        console.log(formEducation);
 
         parentCallback(event.target.name.value,
             event.target.email.value,
             event.target.phone.value,
             event.target.address.value,
-            education);
+            formEducation);
         event.preventDefault();
     }
 
