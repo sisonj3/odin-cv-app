@@ -1,6 +1,9 @@
-import {v4 as uuidv4} from 'uuid'
+import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 function Form({ parentCallback, parentEducation }) {
+
+    const [isActive, setIsActive] = useState(false);
 
     let formEducation = parentEducation.map((x) => x);
 
@@ -54,35 +57,47 @@ function Form({ parentCallback, parentEducation }) {
             </div>
 
             <div className="section">
-                <div>
-                    <label htmlFor="school">School:</label>
-                    <input type="text" id="school" name="school"/>
-                </div>
+                {isActive ? (
+                    <div>
+                        <div>
+                            <label htmlFor="school">School:</label>
+                            <input type="text" id="school" name="school"/>
+                        </div>
 
-                <div>
-                    <label htmlFor="degree">Degree:</label>
-                    <input type="text" id="degree" name="degree"/>
-                </div>
+                        <div>
+                            <label htmlFor="degree">Degree:</label>
+                            <input type="text" id="degree" name="degree"/>
+                        </div>
 
-                <div>
-                    <label htmlFor="city">City:</label>
-                    <input type="text" id="city" name="city"/>
-                </div>
+                        <div>
+                            <label htmlFor="city">City:</label>
+                            <input type="text" id="city" name="city"/>
+                        </div>
 
-                <div>
-                    <label htmlFor="country">Country:</label>
-                    <input type="text" id="country" name="country"/>
-                </div>
+                        <div>
+                            <label htmlFor="country">Country:</label>
+                            <input type="text" id="country" name="country"/>
+                        </div>
 
-                <div>
-                    <label htmlFor="startDateEdu">Start Date:</label>
-                    <input type="date" id="startDateEdu" name="startDateEdu"/>
-                </div>
+                        <div>
+                            <label htmlFor="startDateEdu">Start Date:</label>
+                            <input type="date" id="startDateEdu" name="startDateEdu"/>
+                        </div>
 
-                <div>
-                    <label htmlFor="endDateEdu">End Date:</label>
-                    <input type="date" id="endDateEdu" name="endDateEdu"/>
-                </div>
+                        <div>
+                            <label htmlFor="endDateEdu">End Date:</label>
+                            <input type="date" id="endDateEdu" name="endDateEdu"/>
+                        </div>
+
+                        <div>
+                            <button onClick={() => setIsActive(false)}>X</button>
+                            <button onClick={() => setIsActive(false)}>Add</button>
+                        </div>
+                    </div>
+                ) : (
+                    <button onClick={() => setIsActive(true)}>Add</button>
+                )}
+
             </div>
 
             <div className="section">
