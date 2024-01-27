@@ -4,32 +4,36 @@ import { v4 as uuidv4 } from 'uuid'
 function Form({ parentCallback, parentEducation }) {
 
     const [isActive, setIsActive] = useState(false);
-
-    let formEducation = parentEducation.map((x) => x);
+    const [formEducation, setFormEducation] = useState(parentEducation.map((x) => x));
 
     let returnData = (event) => {
-        let formEdu = {
-            school: event.target.school.value,
-            degree: event.target.degree.value,
-            city: event.target.city.value,
-            country: event.target.country.value,
-            startDate: new Date(event.target.startDateEdu.value),
-            endDate: new Date(event.target.endDateEdu.value),
-            id: uuidv4()
-        };
-
-        // console.log(event.target.startDateEdu.value);
-        // console.log(event.target.endDateEdu.value);
-
-        formEducation.push(formEdu);
-        console.log(formEducation);
-
         parentCallback(event.target.name.value,
             event.target.email.value,
             event.target.phone.value,
             event.target.address.value,
             formEducation);
         event.preventDefault();
+    }
+
+    let addEducation = (event) => {
+
+        let childNodes = event.target.parentElement.parentElement.childNodes;
+
+        let formEdu = {
+            school: childNodes[0].childNodes[1].value,
+            degree: childNodes[1].childNodes[1].value,
+            city: childNodes[2].childNodes[1].value,
+            country: childNodes[3].childNodes[1].value,
+            startDate: new Date(childNodes[4].childNodes[1].value),
+            endDate: new Date(childNodes[5].childNodes[1].value),
+            id: uuidv4()
+        };
+
+        formEducation.push(formEdu);
+        setFormEducation(formEducation);
+        console.log(formEducation);
+        
+        setIsActive(false);
     }
 
     return (
@@ -91,7 +95,7 @@ function Form({ parentCallback, parentEducation }) {
 
                         <div>
                             <button onClick={() => setIsActive(false)}>X</button>
-                            <button onClick={() => setIsActive(false)}>Add</button>
+                            <button onClick={addEducation}>Add</button>
                         </div>
                     </div>
                 ) : (
@@ -127,8 +131,7 @@ function Form({ parentCallback, parentEducation }) {
                 </div>
             </div>
             
-            <input type="submit"/>
-
+            <input type="submit" />
         </form>
     )
 }
