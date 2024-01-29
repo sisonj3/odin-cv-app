@@ -32,6 +32,7 @@ function Form({ parentCallback, parentEducation }) {
         formEducation.push(formEdu);
         setFormEducation(formEducation);
         console.log(formEducation);
+        console.log(formEducation.indexOf(formEdu.id));
         
         setIsActive(false);
     }
@@ -65,32 +66,32 @@ function Form({ parentCallback, parentEducation }) {
                     <div>
                         <div>
                             <label htmlFor="school">School:</label>
-                            <input type="text" id="school" name="school"/>
+                            <input type="text" id="school" name="school" />
                         </div>
 
                         <div>
                             <label htmlFor="degree">Degree:</label>
-                            <input type="text" id="degree" name="degree"/>
+                            <input type="text" id="degree" name="degree" />
                         </div>
 
                         <div>
                             <label htmlFor="city">City:</label>
-                            <input type="text" id="city" name="city"/>
+                            <input type="text" id="city" name="city" />
                         </div>
 
                         <div>
                             <label htmlFor="country">Country:</label>
-                            <input type="text" id="country" name="country"/>
+                            <input type="text" id="country" name="country" />
                         </div>
 
                         <div>
                             <label htmlFor="startDateEdu">Start Date:</label>
-                            <input type="date" id="startDateEdu" name="startDateEdu"/>
+                            <input type="date" id="startDateEdu" name="startDateEdu" />
                         </div>
 
                         <div>
                             <label htmlFor="endDateEdu">End Date:</label>
-                            <input type="date" id="endDateEdu" name="endDateEdu"/>
+                            <input type="date" id="endDateEdu" name="endDateEdu" />
                         </div>
 
                         <div>
@@ -98,8 +99,19 @@ function Form({ parentCallback, parentEducation }) {
                             <button onClick={addEducation}>Add</button>
                         </div>
                     </div>
-                ) : (
-                    <button onClick={() => setIsActive(true)}>Add</button>
+                ) : (    
+                    <div>
+                        {formEducation.map((edu) => (
+                            <div key={edu.id}>
+                                <h1>{edu.school}</h1>
+                                <p>{edu.degree}</p>
+                                <p>{edu.city}, {edu.country}</p>
+                                <p>{edu.startDate.getMonth()}/{edu.startDate.getDate()}/{edu.startDate.getFullYear()} - {edu.endDate.getMonth()}/{edu.endDate.getDate()}/{edu.endDate.getFullYear()}</p>
+                            </div>
+                        ))}
+                    
+                        <button onClick={() => setIsActive(true)}>Add</button>
+                    </div>
                 )}
 
             </div>
