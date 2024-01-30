@@ -17,6 +17,8 @@ function Form({ parentCallback, parentEducation }) {
 
     let addEducation = (event) => {
 
+        console.log('Adding Education...');
+
         let childNodes = event.target.parentElement.parentElement.childNodes;
 
         let formEdu = {
@@ -30,11 +32,21 @@ function Form({ parentCallback, parentEducation }) {
         };
 
         formEducation.push(formEdu);
-        setFormEducation(formEducation);
         console.log(formEducation);
-        console.log(formEducation.indexOf(formEdu.id));
+        // console.log(formEducation.indexOf(formEdu.id));
         
         setIsActive(false);
+        event.preventDefault();
+    }
+
+    let removeEducation = (event) => {
+        let index = event.target.parentElement.attributes.index.value;
+        console.log(`Deleting formEducation[${index}]...`);
+
+        formEducation.splice(index, 1);
+        setFormEducation(formEducation.map((x) => x));
+        console.log(formEducation);
+        event.preventDefault();
     }
 
     return (
@@ -107,6 +119,12 @@ function Form({ parentCallback, parentEducation }) {
                                 <p>{edu.degree}</p>
                                 <p>{edu.city}, {edu.country}</p>
                                 <p>{edu.startDate.getMonth()}/{edu.startDate.getDate()}/{edu.startDate.getFullYear()} - {edu.endDate.getMonth()}/{edu.endDate.getDate()}/{edu.endDate.getFullYear()}</p>
+                            
+                                <div index={formEducation.indexOf(edu)}>
+                                    <button onClick={removeEducation}>Delete</button>
+
+                                    <button>Edit</button>
+                                </div>
                             </div>
                         ))}
                     
