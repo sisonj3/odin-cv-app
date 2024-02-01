@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import School from './School'
 
 function Form({ parentCallback, parentEducation }) {
 
+    // States
     const [isActive, setIsActive] = useState(false);
     const [formEducation, setFormEducation] = useState(parentEducation.map((x) => x));
 
+    // Function to return form information back to App.jsx
     let returnData = (event) => {
         parentCallback(event.target.name.value,
             event.target.email.value,
@@ -15,6 +18,7 @@ function Form({ parentCallback, parentEducation }) {
         event.preventDefault();
     }
 
+    // Functions for Education
     let addEducation = (event) => {
 
         console.log('Adding Education...');
@@ -49,6 +53,12 @@ function Form({ parentCallback, parentEducation }) {
         event.preventDefault();
     }
 
+    let editEducation = (event) => {
+        let index = event.target.parentElement.attributes.index.value;
+        console.log(`Editing formEducation[${index}]...`);
+    }
+    //////////////////////////////////////
+
     return (
         <form onSubmit={returnData}>            
             <div className="section">
@@ -75,42 +85,7 @@ function Form({ parentCallback, parentEducation }) {
 
             <div className="section">
                 {isActive ? (
-                    <div>
-                        <div>
-                            <label htmlFor="school">School:</label>
-                            <input type="text" id="school" name="school" />
-                        </div>
-
-                        <div>
-                            <label htmlFor="degree">Degree:</label>
-                            <input type="text" id="degree" name="degree" />
-                        </div>
-
-                        <div>
-                            <label htmlFor="city">City:</label>
-                            <input type="text" id="city" name="city" />
-                        </div>
-
-                        <div>
-                            <label htmlFor="country">Country:</label>
-                            <input type="text" id="country" name="country" />
-                        </div>
-
-                        <div>
-                            <label htmlFor="startDateEdu">Start Date:</label>
-                            <input type="date" id="startDateEdu" name="startDateEdu" />
-                        </div>
-
-                        <div>
-                            <label htmlFor="endDateEdu">End Date:</label>
-                            <input type="date" id="endDateEdu" name="endDateEdu" />
-                        </div>
-
-                        <div>
-                            <button onClick={() => setIsActive(false)}>X</button>
-                            <button onClick={addEducation}>Add</button>
-                        </div>
-                    </div>
+                    <School addEducation={addEducation}/>
                 ) : (    
                     <div>
                         {formEducation.map((edu) => (
