@@ -6,6 +6,8 @@ function Form({ parentCallback, parentEducation }) {
 
     // States
     const [isActive, setIsActive] = useState(false);
+    const [isEditingEducation, setIsEditingEducation] = useState(false);
+    const [eduIndex, setEduIndex] = useState(0);
     const [formEducation, setFormEducation] = useState(parentEducation.map((x) => x));
 
     // Function to return form information back to App.jsx
@@ -54,8 +56,14 @@ function Form({ parentCallback, parentEducation }) {
     }
 
     let editEducation = (event) => {
-        let index = event.target.parentElement.attributes.index.value;
-        console.log(`Editing formEducation[${index}]...`);
+        console.log(`Editing Education...`);
+        event.preventDefault();
+    }
+
+    let editEduInfo = (event) => {
+        setEduIndex(event.target.parentElement.attributes.index.value);
+        setIsEditingEducation(true);
+        event.preventDefault();
     }
     //////////////////////////////////////
 
@@ -85,8 +93,19 @@ function Form({ parentCallback, parentEducation }) {
 
             <div className="section">
                 {isActive ? (
-                    <School addEducation={addEducation}/>
-                ) : (    
+                    <School
+                        educationFunction={addEducation}
+                        stateFunction={setIsActive}
+                        buttonText={'Add'}
+                    />
+                ) : isEditingEducation ? (
+                        <School
+                            educationFunction={editEducation}
+                            stateFunction={setIsEditingEducation}
+                            buttonText={'Confirm'} 
+                            eduPlaceholder={formEducation[eduIndex]}
+                        />
+                ) : (
                     <div>
                         {formEducation.map((edu) => (
                             <div key={edu.id}>
@@ -98,7 +117,7 @@ function Form({ parentCallback, parentEducation }) {
                                 <div index={formEducation.indexOf(edu)}>
                                     <button onClick={removeEducation}>Delete</button>
 
-                                    <button>Edit</button>
+                                    <button onClick={editEduInfo}>Edit</button>
                                 </div>
                             </div>
                         ))}
