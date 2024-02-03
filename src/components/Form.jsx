@@ -32,8 +32,8 @@ function Form({ parentCallback, parentEducation }) {
             degree: childNodes[1].childNodes[1].value,
             city: childNodes[2].childNodes[1].value,
             country: childNodes[3].childNodes[1].value,
-            startDate: new Date(childNodes[4].childNodes[1].value),
-            endDate: new Date(childNodes[5].childNodes[1].value),
+            startDate: new Date(`${childNodes[4].childNodes[1].value}:00:00`),
+            endDate: new Date(`${childNodes[5].childNodes[1].value}:00:00`),
             id: uuidv4()
         };
 
@@ -57,6 +57,18 @@ function Form({ parentCallback, parentEducation }) {
 
     let editEducation = (event) => {
         console.log(`Editing Education...`);
+
+        let edu = formEducation[eduIndex];
+        let childNodes = event.target.parentElement.parentElement.childNodes;
+        
+        edu.school = childNodes[0].childNodes[1].value;
+        edu.degree = childNodes[1].childNodes[1].value;
+        edu.city = childNodes[2].childNodes[1].value;
+        edu.country = childNodes[3].childNodes[1].value;
+        edu.startDate = new Date(`${childNodes[4].childNodes[1].value}:00:00`);
+        edu.endDate = new Date(`${childNodes[5].childNodes[1].value}:00:00`);
+        
+        setIsEditingEducation(false);
         event.preventDefault();
     }
 

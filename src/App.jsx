@@ -4,6 +4,10 @@ import Form from './components/Form'
 import CV from './components/CV'
 import './App.css'
 
+///////////////////////
+// * FIX DATE DISPLAY *
+//////////////////////
+
 function App() {
   // Personal Info States
   const [name, setName] = useState('First Last');

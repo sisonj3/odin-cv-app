@@ -12,6 +12,8 @@ function School({ educationFunction, stateFunction, buttonText, eduPlaceholder }
         degreeValue = eduPlaceholder.degree;
         cityValue = eduPlaceholder.city;
         countryValue = eduPlaceholder.country;
+        startDateValue = eduPlaceholder.startDate.toISOString().substring(0, 10);
+        endDateValue = eduPlaceholder.endDate.toISOString().substring(0, 10);
     }
 
     return (
