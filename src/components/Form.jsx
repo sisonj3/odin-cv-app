@@ -1,14 +1,18 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import School from './School'
+import Experience from './Experience'
 
 function Form({ parentCallback, parentEducation, parentExperience }) {
 
     // States
-    const [isActive, setIsActive] = useState(false);
+    const [isEduActive, setIsEduActive] = useState(false);
     const [isEditingEducation, setIsEditingEducation] = useState(false);
     const [eduIndex, setEduIndex] = useState(0);
     const [formEducation, setFormEducation] = useState(parentEducation.map((x) => x));
+
+    const [isExpActive, setIsExpActive] = useState(false);
+    const [formExperience, setFormExperience] = useState(parentExperience.map((x) => x));
 
     // Function to return form information back to App.jsx
     let returnData = (event) => {
@@ -16,7 +20,8 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
             event.target.email.value,
             event.target.phone.value,
             event.target.address.value,
-            formEducation);
+            formEducation,
+            formExperience);
         event.preventDefault();
     }
 
@@ -41,7 +46,7 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
         console.log(formEducation);
         // console.log(formEducation.indexOf(formEdu.id));
         
-        setIsActive(false);
+        setIsEduActive(false);
         event.preventDefault();
     }
 
@@ -79,6 +84,15 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
     }
     //////////////////////////////////////
 
+    // Functions for Experience
+    let addExperience = (event) => {
+        console.log('Adding Experience...');
+
+        event.preventDefault();
+    }
+
+    //////////////////////////////////////
+
     return (
         <form onSubmit={returnData}>            
             <div className="section">
@@ -104,10 +118,10 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
             </div>
 
             <div className="section">
-                {isActive ? (
+                {isEduActive ? (
                     <School
                         educationFunction={addEducation}
-                        stateFunction={setIsActive}
+                        stateFunction={setIsEduActive}
                         buttonText={'Add'}
                     />
                 ) : isEditingEducation ? (
@@ -134,37 +148,18 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
                             </div>
                         ))}
                     
-                        <button onClick={() => setIsActive(true)}>Add</button>
+                        <button onClick={() => setIsEduActive(true)}>Add</button>
                     </div>
                 )}
 
             </div>
 
             <div className="section">
-                <div>
-                    <label htmlFor="jobTitle">Job Title:</label>
-                    <input type="text" id="jobTitle" name="jobTitle"/>
-                </div>
-
-                <div>
-                    <label htmlFor="company">Company:</label>
-                    <input type="text" id="company" name="company"/>
-                </div>
-
-                <div>
-                    <label htmlFor="startDateJob">Start Date:</label>
-                    <input type="date" id="startDateJob" name="startDateJob"/>
-                </div>
-
-                <div>
-                    <label htmlFor="endDateJob">End Date:</label>
-                    <input type="date" id="endDateJob" name="endDateJob"/>
-                </div>
-
-                <div>
-                    <label htmlFor="description">Description:</label>
-                    <input type="text" id="description" name="description"/>
-                </div>
+                <Experience
+                    experienceFunction={addExperience}
+                    stateFunction={setIsExpActive}
+                    buttonText={'Add'}
+                />
             </div>
             
             <input type="submit" />

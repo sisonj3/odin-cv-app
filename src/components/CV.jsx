@@ -43,6 +43,16 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
                     </div>
                 ))}
             </div>
+            <div>
+                {cvExperience.map((job) => (
+                    <div key={job.id}>
+                        <h1>{job.title}</h1>
+                        <p>{job.company}</p>
+                        <p>{job.startDate.getMonth()}/{job.startDate.getDate()}/{job.startDate.getFullYear()} - {job.endDate.getMonth()}/{job.endDate.getDate()}/{job.endDate.getFullYear()}</p>
+                        <p>{job.description}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }

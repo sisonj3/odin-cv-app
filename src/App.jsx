@@ -30,7 +30,7 @@ function App() {
   // Job state
   const [experience, setExperience] = useState([
     {
-      jobTitle: 'Job Title',
+      title: 'Job Title',
       company: 'Company Inc.',
       startDate: new Date(2019, 6, 28),
       endDate: new Date(2019, 8, 16),
