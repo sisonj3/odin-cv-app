@@ -28,26 +28,41 @@ function App() {
     }]);
   
   // Job state
+  const [experience, setExperience] = useState([
+    {
+      jobTitle: 'Job Title',
+      company: 'Company Inc.',
+      startDate: new Date(2019, 6, 28),
+      endDate: new Date(2019, 8, 16),
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      id: uuidv4()
+    }
+  ]);
 
-  let getFormData = (formName, formEmail, formPhone, formAddress, formEducation) => {
+  let getFormData = (formName, formEmail, formPhone, formAddress, formEducation, formExperience) => {
     setName(formName);
     setEmail(formEmail);
     setPhone(formPhone);
     setAddress(formAddress);
     setEducation(formEducation);
+    setExperience(formExperience);
   };
 
   return (
     <>
       <Form
         parentCallback={getFormData}
-        parentEducation={education}/>
+        parentEducation={education}
+        parentExperience={experience}
+      />
       <CV
         cvName={name}
         cvEmail={email}
         cvPhone={phone}
         cvAddress={address}
-        cvEducation={education}/>
+        cvEducation={education}
+        cvExperience={experience}
+      />
     </>
   );
 

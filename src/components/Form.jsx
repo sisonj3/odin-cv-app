@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import School from './School'
 
-function Form({ parentCallback, parentEducation }) {
+function Form({ parentCallback, parentEducation, parentExperience }) {
 
     // States
     const [isActive, setIsActive] = useState(false);
