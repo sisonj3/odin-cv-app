@@ -12,6 +12,8 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
     const [formEducation, setFormEducation] = useState(parentEducation.map((x) => x));
 
     const [isExpActive, setIsExpActive] = useState(false);
+    const [isEditingExperience, setIsEditingExperience] = useState(false);
+    const [expIndex, setExpIndex] = useState(0);
     const [formExperience, setFormExperience] = useState(parentExperience.map((x) => x));
 
     // Function to return form information back to App.jsx
@@ -88,9 +90,59 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
     let addExperience = (event) => {
         console.log('Adding Experience...');
 
+        let childNodes = event.target.parentElement.parentElement.childNodes;
+
+        console.log(childNodes);
+
+        let formExp = {
+            title: childNodes[0].childNodes[1].value,
+            company: childNodes[1].childNodes[1].value,
+            startDate: new Date(`${childNodes[2].childNodes[1].value}:00:00`),
+            endDate: new Date(`${childNodes[3].childNodes[1].value}:00:00`),
+            description: childNodes[4].childNodes[1].value,
+            id: uuidv4()
+        };
+
+        formExperience.push(formExp);
+        console.log(formExperience);
+
+        setIsExpActive(false);
+
         event.preventDefault();
     }
 
+    let removeExperience = (event) => {
+        let index = event.target.parentElement.attributes.index.value;
+        console.log(`Deleting formExperience[${index}]...`);
+
+        formExperience.splice(index, 1);
+        setFormExperience(formExperience.map((x) => x));
+        console.log(formExperience);
+
+        event.preventDefault();
+    }
+
+    let editExperience = (event) => {
+        console.log(`Editing Experience...`);
+
+        let exp = formExperience[expIndex];
+        let childNodes = event.target.parentElement.parentElement.childNodes;
+
+        exp.title = childNodes[0].childNodes[1].value;
+        exp.company = childNodes[1].childNodes[1].value;
+        exp.startDate = new Date(`${childNodes[2].childNodes[1].value}:00:00`);
+        exp.endDate = new Date(`${childNodes[3].childNodes[1].value}:00:00`);
+        exp.description = childNodes[4].childNodes[1].value;
+
+        setIsEditingExperience(false);
+        event.preventDefault();
+    }
+
+    let editExpInfo = (event) => {
+        setExpIndex(event.target.parentElement.attributes.index.value);
+        setIsEditingExperience(true);
+        event.preventDefault();
+    }
     //////////////////////////////////////
 
     return (
@@ -155,11 +207,40 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
             </div>
 
             <div className="section">
-                <Experience
-                    experienceFunction={addExperience}
-                    stateFunction={setIsExpActive}
-                    buttonText={'Add'}
-                />
+                {isExpActive ? (
+                    <Experience
+                        experienceFunction={addExperience}
+                        stateFunction={setIsExpActive}
+                        buttonText={'Add'}
+                    />
+                ) : isEditingExperience ? (
+                        <Experience
+                            experienceFunction={editExperience}
+                            stateFunction={setIsEditingExperience}
+                            buttonText={'Confirm'}
+                            expPlaceholder={formExperience[expIndex]}
+                        />
+                ) : (
+                    <div>
+                        {formExperience.map((job) => (
+                            <div key={job.id}>
+                                <h1>{job.title}</h1>
+                                <p>{job.company}</p>
+                                <p>{job.startDate.getMonth()}/{job.startDate.getDate()}/{job.startDate.getFullYear()} - {job.endDate.getMonth()}/{job.endDate.getDate()}/{job.endDate.getFullYear()}</p>
+                                <p>{job.description}</p>
+
+                                <div index={formExperience.indexOf(job)}>
+                                    <button onClick={removeExperience}>Delete</button>
+
+                                    <button onClick={editExpInfo}>Edit</button>
+                                </div>
+                            </div>
+                        ))}
+                                
+                        <button onClick={() => setIsExpActive(true)}>Add</button>
+                    </div>   
+                )}
+                
             </div>
             
             <input type="submit" />
