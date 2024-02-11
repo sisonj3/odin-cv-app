@@ -15,7 +15,7 @@ function Experience({experienceFunction, stateFunction, buttonText, expPlacehold
     }
     
     return (
-        <div>
+        <div className="basic">
             <div>
                 <label htmlFor="jobTitle">Job Title:</label>
                 <input type="text" id="jobTitle" name="jobTitle" defaultValue={jobTitleValue}/>

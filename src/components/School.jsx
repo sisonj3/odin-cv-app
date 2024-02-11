@@ -17,7 +17,7 @@ function School({ educationFunction, stateFunction, buttonText, eduPlaceholder }
     }
 
     return (
-        <div>
+        <div className="basic">
             <div>
                 <label htmlFor="school">School:</label>
                 <input type="text" id="school" name="school" defaultValue={schoolValue}/>

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import School from './School'
 import Experience from './Experience'
+import '../styles/Form.css'
 
 function Form({ parentCallback, parentEducation, parentExperience }) {
 
@@ -147,7 +148,7 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
 
     return (
         <form onSubmit={returnData}>            
-            <div className="section">
+            <div className="section basic">
                 <div>
                     <label htmlFor="name">Name:</label>
                     <input type="text" id="name" name="name"/>
@@ -184,9 +185,9 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
                             eduPlaceholder={formEducation[eduIndex]}
                         />
                 ) : (
-                    <div>
+                    <ul>
                         {formEducation.map((edu) => (
-                            <div key={edu.id}>
+                            <li key={edu.id}>
                                 <h1>{edu.school}</h1>
                                 <p>{edu.degree}</p>
                                 <p>{edu.city}, {edu.country}</p>
@@ -197,11 +198,11 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
 
                                     <button onClick={editEduInfo}>Edit</button>
                                 </div>
-                            </div>
+                            </li>
                         ))}
                     
                         <button onClick={() => setIsEduActive(true)}>Add</button>
-                    </div>
+                    </ul>
                 )}
 
             </div>
@@ -221,9 +222,9 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
                             expPlaceholder={formExperience[expIndex]}
                         />
                 ) : (
-                    <div>
+                    <ul>
                         {formExperience.map((job) => (
-                            <div key={job.id}>
+                            <li key={job.id}>
                                 <h1>{job.title}</h1>
                                 <p>{job.company}</p>
                                 <p>{job.startDate.getMonth()}/{job.startDate.getDate()}/{job.startDate.getFullYear()} - {job.endDate.getMonth()}/{job.endDate.getDate()}/{job.endDate.getFullYear()}</p>
@@ -234,11 +235,11 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
 
                                     <button onClick={editExpInfo}>Edit</button>
                                 </div>
-                            </div>
+                            </li>
                         ))}
                                 
                         <button onClick={() => setIsExpActive(true)}>Add</button>
-                    </div>   
+                    </ul>   
                 )}
                 
             </div>
