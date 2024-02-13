@@ -1,4 +1,5 @@
 import { ReactDOM } from "react";
+import '../styles/CV.css'
 
 function CV({ cvName, cvEmail, cvPhone, cvAddress,
     cvEducation, cvExperience }) {
@@ -26,12 +27,14 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
     console.log(cvEducation);
 
     return (
-        <div>
-            <div>
-                <p>{cvName}</p>
-                <p>{cvEmail}</p>
-                <p>{cvPhone}</p>
-                <p>{cvAddress}</p>
+        <div className="CV">
+            <div className="personal">
+                <h1>{cvName}</h1>
+                <div className="contact">
+                    <p>{cvEmail}</p>
+                    <p>{cvPhone}</p>
+                </div>
+                <p className="address">{cvAddress}</p>
             </div>
             <div>
                 {cvEducation.map((edu) => (

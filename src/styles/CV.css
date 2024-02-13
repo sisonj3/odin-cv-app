@@ -1,0 +1,20 @@
+.CV {
+    border: 1px solid black;
+    max-width: 8.5in;
+    max-height: 11in;
+    padding: 5rem;
+}
+
+.personal {
+    text-align: center;
+}
+
+.address {
+    margin: 0;
+}
+
+.contact {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
