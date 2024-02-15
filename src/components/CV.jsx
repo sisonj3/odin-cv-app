@@ -37,21 +37,28 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
                 <p className="address">{cvAddress}</p>
             </div>
             <div>
+                <h2>Education</h2>
                 {cvEducation.map((edu) => (
-                    <div key={edu.id}>
-                        <h1>{edu.school}</h1>
-                        <p>{edu.degree}</p>
-                        <p>{edu.city}, {edu.country}</p>
-                        <p>{edu.startDate.getMonth()}/{edu.startDate.getDate()}/{edu.startDate.getFullYear()} - {edu.endDate.getMonth()}/{edu.endDate.getDate()}/{edu.endDate.getFullYear()}</p>
+                    <div key={edu.id} className="education">
+                        <div className="degree">
+                            <h3>{edu.school}</h3>
+                            <p>{edu.degree}</p>
+                        </div>
+                        <div>
+                            <p>{edu.city}, {edu.country}</p>
+                            <p>{edu.startDate.getMonth()}/{edu.startDate.getDate()}/{edu.startDate.getFullYear()} - {edu.endDate.getMonth()}/{edu.endDate.getDate()}/{edu.endDate.getFullYear()}</p>
+                        </div>
                     </div>
                 ))}
             </div>
             <div>
+                <h2>Experience</h2>
                 {cvExperience.map((job) => (
-                    <div key={job.id}>
-                        <h1>{job.title}</h1>
-                        <p>{job.company}</p>
-                        <p>{job.startDate.getMonth()}/{job.startDate.getDate()}/{job.startDate.getFullYear()} - {job.endDate.getMonth()}/{job.endDate.getDate()}/{job.endDate.getFullYear()}</p>
+                    <div key={job.id} className="experience">
+                        <div>
+                            <h3>{job.title} - {job.company}</h3>
+                            <p>{job.startDate.getMonth()}/{job.startDate.getDate()}/{job.startDate.getFullYear()} - {job.endDate.getMonth()}/{job.endDate.getDate()}/{job.endDate.getFullYear()}</p>
+                        </div> 
                         <p>{job.description}</p>
                     </div>
                 ))}

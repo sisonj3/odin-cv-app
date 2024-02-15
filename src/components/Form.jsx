@@ -76,6 +76,7 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
         edu.startDate = new Date(`${childNodes[4].childNodes[1].value}:00:00`);
         edu.endDate = new Date(`${childNodes[5].childNodes[1].value}:00:00`);
         
+        setFormEducation(formEducation.map((x) => x));
         setIsEditingEducation(false);
         event.preventDefault();
     }
@@ -135,6 +136,7 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
         exp.endDate = new Date(`${childNodes[3].childNodes[1].value}:00:00`);
         exp.description = childNodes[4].childNodes[1].value;
 
+        setFormExperience(formExperience.map((x) => x));
         setIsEditingExperience(false);
         event.preventDefault();
     }
