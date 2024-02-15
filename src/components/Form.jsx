@@ -1,3 +1,4 @@
+import { format } from "date-fns"
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import School from './School'
@@ -193,7 +194,7 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
                                 <h1>{edu.school}</h1>
                                 <p>{edu.degree}</p>
                                 <p>{edu.city}, {edu.country}</p>
-                                <p>{edu.startDate.getMonth()}/{edu.startDate.getDate()}/{edu.startDate.getFullYear()} - {edu.endDate.getMonth()}/{edu.endDate.getDate()}/{edu.endDate.getFullYear()}</p>
+                                <p>{format(edu.startDate, "MM/dd/yyyy")} - {format(edu.endDate, "MM/dd/yyyy")}</p>
                             
                                 <div index={formEducation.indexOf(edu)}>
                                     <button onClick={removeEducation}>Delete</button>
@@ -229,7 +230,7 @@ function Form({ parentCallback, parentEducation, parentExperience }) {
                             <li key={job.id}>
                                 <h1>{job.title}</h1>
                                 <p>{job.company}</p>
-                                <p>{job.startDate.getMonth()}/{job.startDate.getDate()}/{job.startDate.getFullYear()} - {job.endDate.getMonth()}/{job.endDate.getDate()}/{job.endDate.getFullYear()}</p>
+                                <p>{format(job.startDate, "MM/dd/yyyy")} - {format(job.endDate, "MM/dd/yyyy")}</p>
                                 <p>{job.description}</p>
 
                                 <div index={formExperience.indexOf(job)}>

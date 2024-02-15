@@ -1,3 +1,4 @@
+import {format} from "date-fns"
 import { ReactDOM } from "react";
 import '../styles/CV.css'
 
@@ -46,7 +47,7 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
                         </div>
                         <div>
                             <p>{edu.city}, {edu.country}</p>
-                            <p>{edu.startDate.getMonth()}/{edu.startDate.getDate()}/{edu.startDate.getFullYear()} - {edu.endDate.getMonth()}/{edu.endDate.getDate()}/{edu.endDate.getFullYear()}</p>
+                            <p>{format(edu.startDate, "MM/dd/yyyy")} - {format(edu.endDate, "MM/dd/yyyy")}</p>
                         </div>
                     </div>
                 ))}
@@ -57,7 +58,7 @@ function CV({ cvName, cvEmail, cvPhone, cvAddress,
                     <div key={job.id} className="experience">
                         <div>
                             <h3>{job.title} - {job.company}</h3>
-                            <p>{job.startDate.getMonth()}/{job.startDate.getDate()}/{job.startDate.getFullYear()} - {job.endDate.getMonth()}/{job.endDate.getDate()}/{job.endDate.getFullYear()}</p>
+                            <p>{format(job.startDate, "MM/dd/yyyy")} - {format(job.endDate, "MM/dd/yyyy")}</p>
                         </div> 
                         <p>{job.description}</p>
                     </div>
